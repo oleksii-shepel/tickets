@@ -1,0 +1,70 @@
+.container {
+    width: 450px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.caption {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropzone {
+    width: 100%;
+    height: 125px;
+    padding: 2em;
+    text-align:center;
+    border: dashed 1.5px #979797;
+    margin: 0 auto;
+}
+
+.dropzone.selected {
+    background-color: #E5F6FC;
+    opacity: 1;
+}
+
+.dropzone.droppable {
+    background-color: #E5F6FC;
+    opacity: 1;
+}
+
+#details {
+    height: 125px;
+}
+
+#select-file-button {
+    background-color: #E5E4F8 !important;
+    color: #514AD1 !important;
+}
+
+.file-list {
+    list-style: none;
+}
+
+.file-list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.file-name {
+   display: flex;
+   flex-direction: row;
+   align-items: baseline;
+}
+
+.file-icon {
+    color:black;
+    margin-right: 10px;
+} 
+
+#send-ticket-button {
+    width: 100%;
+}

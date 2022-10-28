@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="caption">
+        <h1>Need help? Send a ticket</h1>
+        <button mat-button mat-close-dialog (click)="closeDialog($event)" type="button">
+            &times;
+        </button>
+
+    </div>
+    <mat-dialog-content>
+        <form class="edit-form" #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>            
+            
+            <mat-form-field>
+                <input matInput placeholder="Request name" name="title" [ngModel]="data.title" (ngModelChange)="updateTitle($event)" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select name="department" [ngModel]="data.department" (ngModelChange)="updateDepartment($event)" placeholder="Deparment">
+                    <mat-option *ngFor="let department of departments | keyvalue" [value]="department.value">
+                        {{department.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <textarea id="details" matInput name="details" [ngModel]="data.details" (ngModelChange)="updateDetails($event)"
+                    placeholder="Type here your problem or question..."></textarea>
+            </mat-form-field>
+            <p>
+                <b>Add attachment</b>
+            </p> 
+            <div class="dropzone" appUpload (onFileDropped)="uploadFiles($event)" #dropzone [ngClass]="{selected: data.files && data.files.length > 0 ? true : false}"  >
+                <p>Drag and drop your document here or</p>
+                <button mat-button id="select-file-button" (click)="fileInput.click()" type="button">Select a file</button>
+                <input #fileInput type="file" hidden (change)="fileInputChanged($event);">
+            </div>
+            
+            <ul class="file-list">
+                <li *ngFor="let document of data.files; let i = index" class="file-list-item">
+                    <span class="file-name">
+                        <i class="{{getFileExtension(document.type || 'default')}}" class="file-icon" aria-hidden="true"></i> 
+                        <span>{{document.name}}</span>
+                    </span>
+                    <button (click)="removeFile($event, document)" type="button">&times;</button>
+                </li>
+            </ul>
+            
+            <br>
+            <button mat-button class="btn-primary" id="send-ticket-button" [disabled]="form.invalid" type="submit">Send ticket</button>
+        </form>
+    </mat-dialog-content>
+</div>
